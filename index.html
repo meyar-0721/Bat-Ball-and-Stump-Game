@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >Cricket-Game</title>
+    <link rel="stylesheet" href="5cricket.css">
+</head>
+<body>
+    <div id="game-body">
+        <h1> Bat Ball Stump Game</h1>
+        <button  class="button" onclick="
+        let computerChoise= generateComputerChoise();
+        let resultMsg=getResult('bat',computerChoise) ;
+        showResult('bat', computerChoise, resultMsg)
+        "><img src="bat.png" alt="bat.image" style="height: 40px; width: 40px;"></button> 
+
+        <button class="button" onclick="
+        computerChoise= generateComputerChoise();
+        resultMsg=getResult('ball',computerChoise) ;
+        showResult('ball', computerChoise, resultMsg)
+        "><img src="ball.png" alt="ball.image" style="height: 40px; width: 40px;"></button>
+    
+ 
+
+       <button  class="button" onclick="
+        computerChoise= generateComputerChoise();
+        resultMsg=getResult('stump',computerChoise) ;
+        showResult('stump', computerChoise, resultMsg)
+        "><img src="stump.png" alt="stumo.image" style="height: 40px; width: 40px;"></button>
+
+
+        <button class="button" style="height: 40px; width: 45px,">Reset</button>
+      
+   </div>
+   <script>
+     document.title = 'meyar';
+     setInterval(
+        function(){
+            // let titles = document.title === 'meyar' ? 'mobeen' : 'meyar';
+            if (document.title === 'meyar'){
+                document.title = 'mobeen'
+            }else
+            document.title='meyar';
+            // document.title=titles;
+        },1000)
+
+        let score={
+
+            win:0,
+            lost:0,
+            tie:0,
+            displayScore:function(){
+                return `Total no of matches won:${score.win}, lost: ${score.lost}, tie: ${score.tie}`;
+        
+            }
+        };
+
+       
+        function generateComputerChoise(){
+        randomNumber = Math.random() * 3;
+      
+         if (randomNumber > 0 && randomNumber <= 1) {
+            return 'bat';
+        } else if (randomNumber >1 && randomNumber <=2){ 
+             return'ball';
+        }else  {
+            return'stump';
+        }
+        
+    }
+    function getResult(userMove, computerMove){
+
+        if ( userMove=== 'bat') {
+            if(computerMove==='bat'){
+                score.tie +=1;
+                return`it's a tie`;
+            }else if (computerMove==='ball'){
+                score.win +=1;
+                return 'user won'
+            }else if (computerMove ==='stump') {
+                score.lost +=1;
+                return 'computer won'}
+
+
+
+
+        }else if (userMove === 'ball'){
+            if(computerMove==='ball'){
+                score.tie +=1;
+                return `it's a tie`
+            }else if (computerMove=== 'bat'){
+                score.lost +=1;
+                return'computer won'
+            }else if (computerMove==='stump'){
+                score.win +=1;
+                return 'user won'
+            }
+        }else if (userMove === 'stump'){
+            if(computerMove==='stump'){
+                score.tie +=1;
+                return`it's tie`
+            }else if (computerMove === 'ball'){
+                score.lost +=1;
+                return 'computer won'
+            }else if (computerMove === 'bat'){
+                score.win +=1;
+                return 'user won'
+            }
+            }
+        }
+        function showResult(userMove, computerMove, result){
+            //console.log(score);
+       alert(`you have choosen ${userMove}. Computer choise is ${computerMove} 
+       
+       ${result}
+       ${score.displayScore()}`);
+        
+        }
+
+  </script>
+    
+</body>
+</html>
